@@ -1,0 +1,11 @@
+{
+  "key": "About",
+  "displayName": "About Page",
+  "description": "",
+  "baseType": "page",
+  "sortOrder": 0,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {}
+}

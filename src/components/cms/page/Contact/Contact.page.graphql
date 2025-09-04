@@ -1,0 +1,3 @@
+fragment ContactData on Contact {
+  empty: _metadata { key }
+}

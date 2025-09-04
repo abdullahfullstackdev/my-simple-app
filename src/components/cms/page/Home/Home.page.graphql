@@ -1,0 +1,3 @@
+fragment HomeData on Home {
+  empty: _metadata { key }
+}

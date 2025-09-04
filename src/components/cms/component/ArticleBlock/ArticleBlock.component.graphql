@@ -1,0 +1,3 @@
+fragment ArticleBlockData on ArticleBlock {
+  empty: _metadata { key }
+}

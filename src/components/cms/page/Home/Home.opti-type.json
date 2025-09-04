@@ -1,0 +1,15 @@
+{
+  "key": "Home",
+  "displayName": "Home Page",
+  "description": "",
+  "baseType": "page",
+  "sortOrder": 0,
+  "mayContainTypes": [
+    "About",
+    "Contact",
+    "Services"
+  ],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {}
+}

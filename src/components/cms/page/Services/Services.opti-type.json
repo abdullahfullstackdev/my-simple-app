@@ -1,0 +1,11 @@
+{
+  "key": "Services",
+  "displayName": "Services Page",
+  "description": "",
+  "baseType": "page",
+  "sortOrder": 0,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {}
+}

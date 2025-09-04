@@ -1,0 +1,11 @@
+{
+  "key": "ArticleBlock",
+  "displayName": "Article Block",
+  "description": "",
+  "baseType": "component",
+  "sortOrder": 0,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {}
+}

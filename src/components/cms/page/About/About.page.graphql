@@ -1,0 +1,3 @@
+fragment AboutData on About {
+  empty: _metadata { key }
+}

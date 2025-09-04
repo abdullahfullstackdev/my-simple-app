@@ -1,0 +1,4 @@
+fragment NewsListingData on NewsListing {
+  NewsTitle
+  NewsDescription
+}

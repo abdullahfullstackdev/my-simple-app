@@ -1,0 +1,34 @@
+{
+  "key": "NewsListing",
+  "displayName": "NewsListing",
+  "description": "",
+  "baseType": "page",
+  "sortOrder": 0,
+  "mayContainTypes": [
+    "*"
+  ],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "NewsTitle": {
+      "type": "string",
+      "displayName": "NewsTitle",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 0,
+      "editorSettings": {}
+    },
+    "NewsDescription": {
+      "type": "string",
+      "displayName": "NewsDescription",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 0,
+      "editorSettings": {}
+    }
+  }
+}

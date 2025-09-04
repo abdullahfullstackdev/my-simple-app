@@ -1,0 +1,3 @@
+fragment ServicesData on Services {
+  empty: _metadata { key }
+}
