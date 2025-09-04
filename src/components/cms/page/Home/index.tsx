@@ -1,6 +1,5 @@
 import { type OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
 import { HomeDataFragmentDoc, type HomeDataFragment } from "@/gql/graphql";
-import { getSdk } from "@/gql";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,7 +7,7 @@ import Link from "next/link";
  * Home Page - CMS Component
  * This will be displayed in the CMS visual builder
  */
-export const HomePage : CmsComponent<HomeDataFragment> = ({ data, children }) => {
+export const HomePage : CmsComponent<HomeDataFragment> = () => {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -169,8 +168,7 @@ export const HomePage : CmsComponent<HomeDataFragment> = ({ data, children }) =>
 
 HomePage.displayName = "Home Page (Page/Home)"
 HomePage.getDataFragment = () => ['HomeData', HomeDataFragmentDoc]
-HomePage.getMetaData = async (contentLink, locale, client) => {
-  const sdk = getSdk(client);
+HomePage.getMetaData = async () => {
   return {}
 }
 

@@ -1,3 +1,5 @@
+import React from "react";
+
 // Simple content mapping for CMS components
 // This will be replaced by real GraphQL queries once we have the proper setup
 
@@ -21,7 +23,7 @@ const CMS_CONTENT_MAPPING: Record<string, string> = {
 export async function getContentByPath(path: string) {
   try {
     // Map paths to content types (using the prefixed types from CmsFactory)
-    const contentMap: Record<string, any> = {
+    const contentMap: Record<string, { type: string; data: { empty: { key: string } }; children: React.ReactNode[] }> = {
       'home': {
         type: 'Page/Home',
         data: {
@@ -75,7 +77,7 @@ export async function getContentById(id: string) {
       console.log('Found direct mapping for ID:', id, '→', pageType);
       
       // Return the appropriate content based on the page type
-      const contentMap: Record<string, any> = {
+      const contentMap: Record<string, { type: string; data: { empty: { key: string } }; children: React.ReactNode[] }> = {
         'Page/Home': {
           type: 'Page/Home',
           data: { empty: { key: 'home' } },

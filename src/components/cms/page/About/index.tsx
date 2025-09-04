@@ -1,6 +1,5 @@
 import { type OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
 import { AboutDataFragmentDoc, type AboutDataFragment } from "@/gql/graphql";
-import { getSdk } from "@/gql";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -102,8 +101,7 @@ export const AboutPage : CmsComponent<AboutDataFragment> = () => {
 
 AboutPage.displayName = "About Page (Page/About)"
 AboutPage.getDataFragment = () => ['AboutData', AboutDataFragmentDoc]
-AboutPage.getMetaData = async (contentLink, locale, client) => {
-  const sdk = getSdk(client);
+AboutPage.getMetaData = async () => {
   return {}
 }
 

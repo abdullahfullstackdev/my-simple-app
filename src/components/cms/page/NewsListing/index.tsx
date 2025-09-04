@@ -17,7 +17,7 @@ export const NewsListingPage : CmsComponent<NewsListingDataFragment> = ({ data, 
 }
 NewsListingPage.displayName = "NewsListing Page (Page/NewsListing)"
 NewsListingPage.getDataFragment = () => ['NewsListingData', NewsListingDataFragmentDoc]
-NewsListingPage.getMetaData = async (contentLink, locale, client) => {
+NewsListingPage.getMetaData = async () => {
     // Add your metadata logic here
     return {}
 }

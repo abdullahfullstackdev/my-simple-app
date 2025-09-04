@@ -17,7 +17,7 @@ export const BlankExperienceComponent : CmsComponent<BlankExperienceDataFragment
 }
 BlankExperienceComponent.displayName = "BlankExperience Experience (Experience/BlankExperience)"
 BlankExperienceComponent.getDataFragment = () => ['BlankExperienceData', BlankExperienceDataFragmentDoc]
-BlankExperienceComponent.getMetaData = async (contentLink, locale, client) => {
+BlankExperienceComponent.getMetaData = async () => {
     // Add your metadata logic here
     return {}
 }

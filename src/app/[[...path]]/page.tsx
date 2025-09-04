@@ -43,7 +43,7 @@ export default async function DynamicPage({
   }
 
   // Render the component directly with the content data
-  const Component = componentEntry.component as React.ComponentType<any>;
+  const Component = componentEntry.component as React.ComponentType<{ data: unknown; children?: React.ReactNode }>;
   return (
     <Component data={content.data}>
       {content.children || []}
