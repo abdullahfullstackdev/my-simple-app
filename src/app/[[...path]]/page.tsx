@@ -1,3 +1,4 @@
+import React from "react";
 import { CmsFactory } from "@/components/cms";
 import { getContentByPath } from "@/lib/cms-client";
 
@@ -42,11 +43,10 @@ export default async function DynamicPage({
   }
 
   // Render the component directly with the content data
-  const Component = componentEntry.component;
+  const Component = componentEntry.component as React.ComponentType<any>;
   return (
-    <Component
-      data={content.data}
-      children={content.children || []}
-    />
+    <Component data={content.data}>
+      {content.children || []}
+    </Component>
   );
 }

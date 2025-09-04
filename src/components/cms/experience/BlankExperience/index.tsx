@@ -1,4 +1,4 @@
-import { type OptimizelyNextExperience as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
+import { type OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
 import { BlankExperienceDataFragmentDoc, type BlankExperienceDataFragment } from "@/gql/graphql";
 
 /**

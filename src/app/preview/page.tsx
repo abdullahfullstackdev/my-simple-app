@@ -1,3 +1,4 @@
+import React from "react";
 import { CmsFactory } from "@/components/cms";
 import { getContentById } from "@/lib/cms-client";
 
@@ -66,11 +67,10 @@ export default async function PreviewPage({
   }
 
   // Render the component directly with the content data
-  const Component = componentEntry.component;
+  const Component = componentEntry.component as React.ComponentType<any>;
   return (
-    <Component 
-      data={content.data} 
-      children={content.children || []}
-    />
+    <Component data={content.data}>
+      {content.children || []}
+    </Component>
   );
 }

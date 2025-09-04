@@ -2,12 +2,13 @@ import { type OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-
 import { AboutDataFragmentDoc, type AboutDataFragment } from "@/gql/graphql";
 import { getSdk } from "@/gql";
 import Image from "next/image";
+import Link from "next/link";
 
 /**
  * About Page - CMS Component
  * This will be displayed in the CMS visual builder
  */
-export const AboutPage : CmsComponent<AboutDataFragment> = ({ data, children }) => {
+export const AboutPage : CmsComponent<AboutDataFragment> = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4 py-16">
@@ -27,7 +28,7 @@ export const AboutPage : CmsComponent<AboutDataFragment> = ({ data, children }) 
               Our Story
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              Founded with a vision to transform the industry, we've grown from a small startup 
+              Founded with a vision to transform the industry, we&apos;ve grown from a small startup 
               to a leading company in our field. Our journey has been marked by continuous 
               learning, adaptation, and growth.
             </p>
@@ -80,7 +81,7 @@ export const AboutPage : CmsComponent<AboutDataFragment> = ({ data, children }) 
         </div>
 
         <div className="text-center">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
           >
@@ -92,7 +93,7 @@ export const AboutPage : CmsComponent<AboutDataFragment> = ({ data, children }) 
               className="mr-2"
             />
             Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>
