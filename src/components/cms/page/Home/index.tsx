@@ -1,13 +1,13 @@
 import { type OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
 import { HomeDataFragmentDoc, type HomeDataFragment } from "@/gql/graphql";
+import { getSdk } from "@/gql";
 import Image from "next/image";
-import Link from "next/link";
 
 /**
  * Home Page - CMS Component
  * This will be displayed in the CMS visual builder
  */
-export const HomePage : CmsComponent<HomeDataFragment> = () => {
+export const HomePage : CmsComponent<HomeDataFragment> = ({ data, children }) => {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -29,7 +29,7 @@ export const HomePage : CmsComponent<HomeDataFragment> = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
-          <Link
+          <a
             className="rounded-lg border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex flex-col items-center justify-center hover:bg-[f2f2f2] dark:hover:bg-[#1a1a1a] p-6 text-center"
             href="/about"
           >
@@ -44,9 +44,9 @@ export const HomePage : CmsComponent<HomeDataFragment> = () => {
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Learn about our company and mission
             </p>
-          </Link>
+          </a>
           
-          <Link
+          <a
             className="rounded-lg border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex flex-col items-center justify-center hover:bg-[f2f2f2] dark:hover:bg-[#1a1a1a] p-6 text-center"
             href="/services"
           >
@@ -61,9 +61,9 @@ export const HomePage : CmsComponent<HomeDataFragment> = () => {
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Explore what we can do for you
             </p>
-          </Link>
+          </a>
           
-          <Link
+          <a
             className="rounded-lg border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex flex-col items-center justify-center hover:bg-[f2f2f2] dark:hover:bg-[#1a1a1a] p-6 text-center"
             href="/contact"
           >
@@ -78,9 +78,9 @@ export const HomePage : CmsComponent<HomeDataFragment> = () => {
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Get in touch with our team
             </p>
-          </Link>
+          </a>
           
-          <Link
+          <a
             className="rounded-lg border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex flex-col items-center justify-center hover:bg-[f2f2f2] dark:hover:bg-[#1a1a1a] p-6 text-center"
             href="/"
           >
@@ -95,11 +95,11 @@ export const HomePage : CmsComponent<HomeDataFragment> = () => {
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Back to home page
             </p>
-          </Link>
+          </a>
         </div>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <Link
+          <a
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
             href="/about"
           >
@@ -111,18 +111,18 @@ export const HomePage : CmsComponent<HomeDataFragment> = () => {
               height={20}
             />
             Learn More
-          </Link>
-          <Link
+          </a>
+          <a
             className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto"
             href="/services"
           >
             Our Services
-          </Link>
+          </a>
         </div>
       </main>
       
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <Link
+        <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/about"
         >
@@ -134,8 +134,8 @@ export const HomePage : CmsComponent<HomeDataFragment> = () => {
             height={16}
           />
           About
-        </Link>
-        <Link
+        </a>
+        <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/services"
         >
@@ -147,8 +147,8 @@ export const HomePage : CmsComponent<HomeDataFragment> = () => {
             height={16}
           />
           Services
-        </Link>
-        <Link
+        </a>
+        <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/contact"
         >
@@ -160,7 +160,7 @@ export const HomePage : CmsComponent<HomeDataFragment> = () => {
             height={16}
           />
           Contact
-        </Link>
+        </a>
       </footer>
     </div>
   );
@@ -168,7 +168,8 @@ export const HomePage : CmsComponent<HomeDataFragment> = () => {
 
 HomePage.displayName = "Home Page (Page/Home)"
 HomePage.getDataFragment = () => ['HomeData', HomeDataFragmentDoc]
-HomePage.getMetaData = async () => {
+HomePage.getMetaData = async (contentLink, locale, client) => {
+    const sdk = getSdk(client);
   return {}
 }
 

@@ -2,7 +2,7 @@ import { CmsEditable, type CmsLayoutComponent } from '@remkoj/optimizely-cms-rea
 
 export const VisualBuilderNode : CmsLayoutComponent = ({ contentLink, layoutProps, children, ctx }) =>
 {
-    const className = `vb:${layoutProps?.layoutType}`
+    let className = `vb:${layoutProps?.layoutType}`
     if (layoutProps && layoutProps.layoutType == "section")
         return <CmsEditable as="div" className={ className } cmsId={ contentLink.key } ctx={ctx}>{ children }</CmsEditable>
     return <div className={ className }>{ children }</div>

@@ -1,3 +1,8 @@
+import * as DotEnv from 'dotenv'
+import { expand } from 'dotenv-expand'
+const result = DotEnv.config({ path: '.env.local' })
+expand(result)
+
 import type { CodegenConfig } from '@graphql-codegen/cli'
 import getSchemaInfo from '@remkoj/optimizely-graph-client/codegen'
 import OptimizelyGraphPreset, {type PresetOptions as OptimizelyGraphPresetOptions}  from '@remkoj/optimizely-graph-functions/preset'

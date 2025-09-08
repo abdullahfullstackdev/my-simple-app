@@ -1,13 +1,13 @@
 import { type OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
 import { ServicesDataFragmentDoc, type ServicesDataFragment } from "@/gql/graphql";
+import { getSdk } from "@/gql";
 import Image from "next/image";
-import Link from "next/link";
 
 /**
  * Services Page - CMS Component
  * This will be displayed in the CMS visual builder
  */
-export const ServicesPage : CmsComponent<ServicesDataFragment> = () => {
+export const ServicesPage : CmsComponent<ServicesDataFragment> = ({ data, children }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
       <div className="container mx-auto px-4 py-16">
@@ -17,7 +17,7 @@ export const ServicesPage : CmsComponent<ServicesDataFragment> = () => {
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We offer a comprehensive range of services designed to help your business 
-            grow and succeed in today&apos;s competitive market.
+            grow and succeed in today's competitive market.
           </p>
         </div>
 
@@ -120,7 +120,7 @@ export const ServicesPage : CmsComponent<ServicesDataFragment> = () => {
         </div>
 
         <div className="text-center">
-          <Link
+          <a
             href="/contact"
             className="inline-flex items-center px-8 py-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
           >
@@ -132,7 +132,7 @@ export const ServicesPage : CmsComponent<ServicesDataFragment> = () => {
               className="mr-2"
             />
             Get Started Today
-          </Link>
+          </a>
         </div>
       </div>
     </div>
@@ -141,7 +141,8 @@ export const ServicesPage : CmsComponent<ServicesDataFragment> = () => {
 
 ServicesPage.displayName = "Services Page (Page/Services)"
 ServicesPage.getDataFragment = () => ['ServicesData', ServicesDataFragmentDoc]
-ServicesPage.getMetaData = async () => {
+ServicesPage.getMetaData = async (contentLink, locale, client) => {
+  const sdk = getSdk(client);
   return {}
 }
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { CmsFactory } from "@/components/cms";
 import { getContentByPath } from "@/lib/cms-client";
 
@@ -7,7 +6,6 @@ export default async function DynamicPage({
 }: {
   params: Promise<{ path?: string[] }>
 }) {
-  // Handle root path and other paths - await params for Next.js 15.5.2
   const resolvedParams = await params;
   const path = resolvedParams.path || [];
   const pathString = path.length > 0 ? path.join('/') : 'home';
@@ -26,7 +24,6 @@ export default async function DynamicPage({
     );
   }
 
-  // Find the component in CmsFactory array
   const componentName = content.type;
   const componentEntry = CmsFactory.find(entry => entry.type === componentName);
 
@@ -42,11 +39,12 @@ export default async function DynamicPage({
     );
   }
 
-  // Render the component directly with the content data
-  const Component = componentEntry.component as React.ComponentType<{ data: unknown; children?: React.ReactNode }>;
+  const Component = componentEntry.component;
   return (
-    <Component data={content.data}>
-      {content.children || []}
-    </Component>
+    <Component
+      data={content.data}
+      children={content.children || []}
+      ctx="view"
+    />
   );
 }

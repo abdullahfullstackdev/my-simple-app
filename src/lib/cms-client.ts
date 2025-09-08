@@ -1,5 +1,3 @@
-import React from "react";
-
 // Simple content mapping for CMS components
 // This will be replaced by real GraphQL queries once we have the proper setup
 
@@ -17,13 +15,16 @@ const CMS_CONTENT_MAPPING: Record<string, string> = {
   
   // Services Page
   '10122d697db64ba6b9780ef48b7f8e4f': 'Page/Services',
+  
+  // NewsListing Page (child of Home page)
+  '256816101bdd459687a487910c3da818': 'Page/NewsListing',
 };
 
 // Get content by path
 export async function getContentByPath(path: string) {
   try {
     // Map paths to content types (using the prefixed types from CmsFactory)
-    const contentMap: Record<string, { type: string; data: { empty: { key: string } }; children: React.ReactNode[] }> = {
+    const contentMap: Record<string, any> = {
       'home': {
         type: 'Page/Home',
         data: {
@@ -76,8 +77,70 @@ export async function getContentById(id: string) {
       const pageType = CMS_CONTENT_MAPPING[id];
       console.log('Found direct mapping for ID:', id, '→', pageType);
       
-      // Return the appropriate content based on the page type
-      const contentMap: Record<string, { type: string; data: { empty: { key: string } }; children: React.ReactNode[] }> = {
+      // For NewsListing, try to fetch real data from CMS
+      if (pageType === 'Page/NewsListing') {
+        try {
+          // Import GraphQL client and use direct query
+          const { createClient } = await import('@remkoj/optimizely-graph-client');
+          const { gql } = await import('graphql-request');
+          const client = createClient();
+          
+          console.log('Attempting direct GraphQL query for NewsListing with ID:', id);
+          
+          // Use the same query that works in your playground
+          const query = gql`
+            query GetNewsListing($id: String!) {
+              NewsListing(where: { _metadata: { key: { eq: $id } } }) {
+                items {
+                  NewsTitle
+                  NewsDescription
+                  _metadata {
+                    key
+                  }
+                }
+              }
+            }
+          `;
+          
+          const result = await client.request(query, { id });
+          console.log('Direct GraphQL query result:', result);
+          
+          if (result?.NewsListing?.items?.[0]) {
+            const item = result.NewsListing.items[0];
+            console.log('Fetched real CMS data:', item);
+            console.log('NewsTitle:', item.NewsTitle);
+            console.log('NewsDescription:', item.NewsDescription);
+            
+            return {
+              type: 'Page/NewsListing',
+              data: {
+                NewsTitle: item.NewsTitle || 'Fallback Title',
+                NewsDescription: item.NewsDescription || 'Fallback Description'
+              },
+              children: []
+            };
+          } else {
+            console.log('No items found in direct GraphQL result');
+          }
+        } catch (graphqlError) {
+          console.error('Direct GraphQL fetch failed:', graphqlError);
+          console.log('Using fallback data instead');
+        }
+        
+        // Fallback to mock data that matches CMS fields
+        console.log('Using fallback data for NewsListing');
+        return {
+          type: 'Page/NewsListing',
+          data: { 
+            NewsTitle: 'FALLBACK: Tested',
+            NewsDescription: 'FALLBACK: Tested'
+          },
+          children: []
+        };
+      }
+      
+      // Return the appropriate content based on the page type for other pages
+      const contentMap: Record<string, any> = {
         'Page/Home': {
           type: 'Page/Home',
           data: { empty: { key: 'home' } },

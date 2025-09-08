@@ -1,10 +1,6 @@
+export * as Schema from "./graphql";
+export * from "./functions";
+export { getSdk, type Sdk } from "./client";
 export * from "./fragment-masking";
 export * from "./gql";
-
-// Create a simple getSdk function for the components
-export function getSdk(client: unknown) {
-  return {
-    // Add any SDK methods that components might need
-    client
-  };
-}
+export const WITH_RECURSIVE_SUPPORT = true;

@@ -69,6 +69,35 @@ export const cmsConfig = {
   // API configuration
   api: {
     tokenPrefix: 'Bearer'
+  },
+  
+  // Visual Builder configuration for direct editing
+  visualBuilder: {
+    enabled: true,
+    directEditing: true,
+    editableProperties: {
+      NewsListing: {
+        NewsTitle: {
+          type: 'string',
+          displayName: 'News Title',
+          editable: true,
+          required: true
+        },
+        NewsDescription: {
+          type: 'string',
+          displayName: 'News Description',
+          editable: true,
+          required: false
+        }
+      }
+    },
+    displayTemplates: {
+      NewsListing: {
+        name: 'News Listing Template',
+        description: 'Template for news listing pages',
+        editable: true
+      }
+    }
   }
 };
 

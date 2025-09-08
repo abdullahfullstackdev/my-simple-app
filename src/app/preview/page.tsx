@@ -1,4 +1,3 @@
-import React from "react";
 import { CmsFactory } from "@/components/cms";
 import { getContentById } from "@/lib/cms-client";
 
@@ -7,10 +6,7 @@ export default async function PreviewPage({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  // Await searchParams for Next.js 15.5.2 compatibility
   const resolvedSearchParams = await searchParams;
-  
-  // Get the preview key from CMS
   const key = resolvedSearchParams.key as string;
   const context = resolvedSearchParams.ctx as string;
   
@@ -25,7 +21,6 @@ export default async function PreviewPage({
     );
   }
 
-  // Get content by ID for preview
   const content = await getContentById(key);
   
   if (!content) {
@@ -48,7 +43,6 @@ export default async function PreviewPage({
     contentData: content.data
   });
 
-  // Find the component in CmsFactory array
   const componentName = content.type;
   const componentEntry = CmsFactory.find(entry => entry.type === componentName);
   
@@ -66,11 +60,12 @@ export default async function PreviewPage({
     );
   }
 
-  // Render the component directly with the content data
-  const Component = componentEntry.component as React.ComponentType<{ data: unknown; children?: React.ReactNode }>;
+  const Component = componentEntry.component;
   return (
-    <Component data={content.data}>
-      {content.children || []}
-    </Component>
+    <Component 
+      data={content.data} 
+      children={content.children || []}
+      ctx={context}
+    />
   );
 }
