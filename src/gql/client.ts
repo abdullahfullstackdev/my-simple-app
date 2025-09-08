@@ -152,6 +152,19 @@ export const IContentListItemFragmentDoc = gql`
   ...IContentData
 }
     `;
+export const GetNewsListingDocument = gql`
+    query GetNewsListing($id: String!) {
+  NewsListing(where: {_metadata: {key: {eq: $id}}}) {
+    items {
+      NewsTitle
+      NewsDescription
+      _metadata {
+        key
+      }
+    }
+  }
+}
+    `;
 export const getContentByIdDocument = gql`
     query getContentById($key: String!, $version: String, $locale: [Locales!], $path: String = "-", $domain: String, $changeset: String) {
   content: _Content(
@@ -244,13 +257,16 @@ export const getContentTypeDocument = gql`
 }
     `;
 
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: unknown) => Promise<T>;
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
 
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType, _variables) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    GetNewsListing(variables: Schema.GetNewsListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.GetNewsListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.GetNewsListingQuery>({ document: GetNewsListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetNewsListing', 'query', variables);
+    },
     getContentById(variables: Schema.getContentByIdQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getContentByIdQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentByIdQuery>({ document: getContentByIdDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getContentById', 'query', variables);
     },
