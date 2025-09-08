@@ -1,5 +1,12 @@
+import React from "react";
 import { CmsFactory } from "@/components/cms";
 import { getContentByPath } from "@/lib/cms-client";
+
+type CmsComponent = React.ComponentType<{
+  data: unknown;
+  ctx: string;
+  children?: React.ReactNode;
+}>;
 
 export default async function DynamicPage({
   params
@@ -39,12 +46,13 @@ export default async function DynamicPage({
     );
   }
 
-  const Component = componentEntry.component;
+  const Component = componentEntry.component as CmsComponent;
   return (
     <Component
       data={content.data}
-      children={content.children || []}
       ctx="view"
-    />
+    >
+      {content.children || []}
+    </Component>
   );
 }

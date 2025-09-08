@@ -46,7 +46,7 @@ export const NewsListingPage : CmsComponent<NewsListingDataFragment> = ({ data, 
             <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="text-sm text-gray-500 mb-2">December 15, 2024</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Company Milestone Reached</h3>
-              <p className="text-gray-600">We're excited to announce that we've reached a significant milestone in our company's growth.</p>
+              <p className="text-gray-600">We&apos;re excited to announce that we&apos;ve reached a significant milestone in our company&apos;s growth.</p>
             </div>
             
             <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
@@ -58,7 +58,7 @@ export const NewsListingPage : CmsComponent<NewsListingDataFragment> = ({ data, 
             <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="text-sm text-gray-500 mb-2">December 5, 2024</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Team Expansion</h3>
-              <p className="text-gray-600">We're growing our team with talented professionals joining our mission.</p>
+              <p className="text-gray-600">We&apos;re growing our team with talented professionals joining our mission.</p>
             </div>
           </div>
         </div>

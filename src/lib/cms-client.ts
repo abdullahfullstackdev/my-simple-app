@@ -1,6 +1,12 @@
 // Simple content mapping for CMS components
 // This will be replaced by real GraphQL queries once we have the proper setup
 
+interface ContentData {
+  type: string;
+  data: unknown;
+  children: unknown[];
+}
+
 // CMS Content ID to Page Type Mapping
 // This maps the actual content IDs from your CMS to the correct page types
 const CMS_CONTENT_MAPPING: Record<string, string> = {
@@ -21,10 +27,10 @@ const CMS_CONTENT_MAPPING: Record<string, string> = {
 };
 
 // Get content by path
-export async function getContentByPath(path: string) {
+export async function getContentByPath(path: string): Promise<ContentData | null> {
   try {
     // Map paths to content types (using the prefixed types from CmsFactory)
-    const contentMap: Record<string, any> = {
+    const contentMap: Record<string, ContentData> = {
       'home': {
         type: 'Page/Home',
         data: {
@@ -68,7 +74,7 @@ export async function getContentByPath(path: string) {
 }
 
 // Get content by ID (for preview mode)
-export async function getContentById(id: string) {
+export async function getContentById(id: string): Promise<ContentData | null> {
   try {
     console.log('getContentById called with ID:', id);
     
@@ -140,7 +146,7 @@ export async function getContentById(id: string) {
       }
       
       // Return the appropriate content based on the page type for other pages
-      const contentMap: Record<string, any> = {
+      const contentMap: Record<string, ContentData> = {
         'Page/Home': {
           type: 'Page/Home',
           data: { empty: { key: 'home' } },

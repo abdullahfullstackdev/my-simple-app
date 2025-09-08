@@ -2,12 +2,13 @@ import { type OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-
 import { ContactDataFragmentDoc, type ContactDataFragment } from "@/gql/graphql";
 import { getSdk } from "@/gql";
 import Image from "next/image";
+import Link from "next/link";
 
 /**
  * Contact Page - CMS Component
  * This will be displayed in the CMS visual builder
  */
-export const ContactPage : CmsComponent<ContactDataFragment> = ({ data, children }) => {
+export const ContactPage : CmsComponent<ContactDataFragment> = ({ data: _data, children: _children }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100">
       <div className="container mx-auto px-4 py-16">
@@ -16,8 +17,8 @@ export const ContactPage : CmsComponent<ContactDataFragment> = ({ data, children
             Get In Touch
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to start your next project? We'd love to hear from you. 
-            Let's discuss how we can help bring your vision to life.
+            Ready to start your next project? We&apos;d love to hear from you. 
+            Let&apos;s discuss how we can help bring your vision to life.
           </p>
         </div>
 
@@ -189,7 +190,7 @@ export const ContactPage : CmsComponent<ContactDataFragment> = ({ data, children
         </div>
 
         <div className="text-center mt-16">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center px-8 py-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
           >
@@ -201,7 +202,7 @@ export const ContactPage : CmsComponent<ContactDataFragment> = ({ data, children
               className="mr-2"
             />
             Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -211,7 +212,7 @@ export const ContactPage : CmsComponent<ContactDataFragment> = ({ data, children
 ContactPage.displayName = "Contact Page (Page/Contact)"
 ContactPage.getDataFragment = () => ['ContactData', ContactDataFragmentDoc]
 ContactPage.getMetaData = async (contentLink, locale, client) => {
-    const sdk = getSdk(client);
+  const _sdk = getSdk(client);
     return {}
 }
 

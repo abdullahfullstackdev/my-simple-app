@@ -1,5 +1,12 @@
+import React from "react";
 import { CmsFactory } from "@/components/cms";
 import { getContentById } from "@/lib/cms-client";
+
+type CmsComponent = React.ComponentType<{
+  data: unknown;
+  ctx: string;
+  children?: React.ReactNode;
+}>;
 
 export default async function PreviewPage({
   searchParams,
@@ -60,12 +67,13 @@ export default async function PreviewPage({
     );
   }
 
-  const Component = componentEntry.component;
+  const Component = componentEntry.component as CmsComponent;
   return (
     <Component 
       data={content.data} 
-      children={content.children || []}
       ctx={context}
-    />
+    >
+      {content.children || []}
+    </Component>
   );
 }
