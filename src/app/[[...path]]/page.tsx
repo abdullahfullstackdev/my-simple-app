@@ -52,7 +52,7 @@ export default async function DynamicPage({
       data={content.data}
       ctx="view"
     >
-      {content.children || []}
+      {(content.children as unknown as React.ReactNode) ?? null}
     </Component>
   );
 }

@@ -1,10 +1,9 @@
 import { type OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
-import { getFragmentData } from "@/gql/fragment-masking";
 import { NewsListingDataFragmentDoc, type NewsListingDataFragment } from "@/gql/graphql";
 import { CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
 
 export const NewsListingPage : CmsComponent<NewsListingDataFragment> = ({ data, ctx }) => {
-  const newsData = getFragmentData(NewsListingDataFragmentDoc, data);
+  const newsData = data as NewsListingDataFragment;
   
   // Debug: Log the data to see what we're receiving
   console.log('NewsListingPage received data:', newsData);

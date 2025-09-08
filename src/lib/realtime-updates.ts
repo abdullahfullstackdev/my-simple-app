@@ -5,10 +5,11 @@ export function setupRealtimeUpdates() {
   if (typeof window === 'undefined') return;
 
   // Listen for content save events from Optimizely CMS
-  window.addEventListener('optimizely:cms:contentSaved', (event: CustomEvent) => {
-    console.log('Content saved event received:', event.detail);
+  window.addEventListener('optimizely:cms:contentSaved' as any, (event: Event) => {
+    const customEvent = event as unknown as CustomEvent<any>;
+    console.log('Content saved event received:', customEvent.detail);
     
-    const message = event.detail;
+    const message = customEvent.detail as any;
     const newPreviewUrl = message.previewUrl;
     
     if (newPreviewUrl) {
@@ -26,8 +27,9 @@ export function setupRealtimeUpdates() {
   });
 
   // Listen for content publish events
-  window.addEventListener('optimizely:cms:contentPublished', (event: CustomEvent) => {
-    console.log('Content published event received:', event.detail);
+  window.addEventListener('optimizely:cms:contentPublished' as any, (event: Event) => {
+    const customEvent = event as unknown as CustomEvent<any>;
+    console.log('Content published event received:', customEvent.detail);
     
     // Force a page refresh to get the latest published content
     window.location.reload();

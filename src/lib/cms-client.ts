@@ -108,7 +108,7 @@ export async function getContentById(id: string): Promise<ContentData | null> {
             }
           `;
           
-          const result = await client.request(query, { id });
+          const result: any = await client.request(query, { id });
           console.log('Direct GraphQL query result:', result);
           
           if (result?.NewsListing?.items?.[0]) {

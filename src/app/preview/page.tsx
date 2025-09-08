@@ -73,7 +73,7 @@ export default async function PreviewPage({
       data={content.data} 
       ctx={context}
     >
-      {content.children || []}
+      {(content.children as unknown as React.ReactNode) ?? null}
     </Component>
   );
 }
